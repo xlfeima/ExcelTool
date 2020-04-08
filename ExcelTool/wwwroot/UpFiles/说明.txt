@@ -1,0 +1,4 @@
+介?各文件?的作用
+AttFiles ：存放上?的附件，不可?
+ExcelFiles ：存放Excel?入、?出操作的?存文件，可?除
+TemplateFiles ：存放Exce?入的模板下?，不可?

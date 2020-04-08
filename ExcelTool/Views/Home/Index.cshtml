@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+<script src="~/jquery-1.12.4.js"></script>
+
+<script src="~/jquery.form.js"></script>
+
+<h3>一、Excel导入</h3>
+<h5>
+    1.模板下载：
+    <a href="UpFiles/TemplateFiles/个人信息_2003.xls">个人信息_2003版</a>
+    <a href="UpFiles/TemplateFiles/个人信息_2007.xlsx">个人信息_2007版</a>
+</h5>
+<h5>2.选择Excel文件并上传</h5>
+<form id="form_addsubmit" method="post" enctype="multipart/form-data">
+    <table class="layer_tab" style="width: 95%; margin: 0 auto; ">
+        <tr>
+            <td class="file">
+                <input type="file" id="add_path" name="file" style="width:73.5%" />
+                <input type="button" onclick="importExcel()" value="提交" name="submit" />
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <textarea id="msg"></textarea>
+            </td>
+        </tr>
+    </table>
+</form>
+<input type="button" id="btn_out" value="导出" />
+<script>
+    //导出
+    $("#btn_out").click(function () {
+        $.post('@Url.Action("EntityToExcel", "Home",new { area=""})');
+    })
+    // 导入Excel
+    function importExcel() {
+        $('#form_addsubmit').ajaxSubmit({
+            type: 'POST', // HTTP请求方式
+            url: '@Url.Action("UpLoadFile", "Home",new { area=""})', // 请求的URL地址
+            dataType: 'json', // 服务器返回数据转换成的类型
+            success: function (data, responseStatus) {
+                var msg = '';
+                if (data.success) {
+                    msg = '转换成功!\r\n';
+                } else {
+                    msg = '转换失败!\r\n';
+                }
+                msg += data.msg + '\r\n'; // 获取异常信息
+                for (var i = 0, len = data.data.length; i < len; i++) { // 获取转换后的实体对象
+                    msg += '数据：' + JSON.stringify(data.data[i]) + '\r\n';
+                }
+                $('#msg').val(msg);
+            }
+        });
+    }
+</script>
