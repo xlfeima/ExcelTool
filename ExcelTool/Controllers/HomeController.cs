@@ -51,9 +51,9 @@ namespace ExcelTool.Controllers
         {
             List<USER_INFO> list = new List<USER_INFO>() {
 
-                 new USER_INFO{ USER_NO="F1680496",USER_NAME="徐磊",Email=DateTime.Now},
-                 new USER_INFO { USER_NO = "F1680496", USER_NAME = "徐磊", Email = DateTime.Now },
-                 new USER_INFO { USER_NO = "F1680496", USER_NAME = "徐磊", Email =DateTime.Now }
+                 new USER_INFO{ USER_NO="xxx",USER_NAME="xx",Email=DateTime.Now},
+                 new USER_INFO { USER_NO = "xxx", USER_NAME = "xx", Email = DateTime.Now },
+                 new USER_INFO { USER_NO = "xxxx", USER_NAME = "xx", Email =DateTime.Now }
             };
             // 2.设置单元格抬头
             // key：实体对象属性名称，可通过反射获取值
